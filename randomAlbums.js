@@ -3,22 +3,26 @@ const allItems = document.querySelector('#allItems');
 let allPhotos;
 
 async function getPhotos(){
+	const selectedValue = document.querySelector('#photos-select').value;
+
+	allItems.innerHTML = '';
+
   const response = await fetch("https://jsonplaceholder.typicode.com/photos");
   const photos = await response.json();
   allPhotos = photos;
-  /* const firstPhoto = photos[4500];
-  console.log(firstPhoto); */
-  
-  const photosArray = photos.slice(0,5);
-  console.log(photosArray);
+ 
+	const photoNumbers = parseInt(selectedValue);
 
-for(let i = 0; i < photosArray.length; i++){
-  const el1 = generateItem(photosArray[i]);
-  allItems.appendChild(el1);
+for(let i = 0; i < photoNumbers; i++){
+  const el = generateItem(allPhotos[i]);
+  allItems.appendChild(el);
  }
 }
+
 getPhotos();
 
+		const selectPhotos = document.querySelector('#photos-select');
+    selectPhotos.addEventListener('change', getPhotos);
 
 function generateItem(element) {
   const gridContainer = document.createElement('div');
@@ -42,6 +46,7 @@ function generateItem(element) {
   gridContainer.appendChild(col1);
   gridContainer.appendChild(col2);
 
-console.log(element);
+	console.log(element);
+  
   return gridContainer;
 }

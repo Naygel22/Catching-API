@@ -6,3 +6,8 @@
    border: 1px solid black;
    align-items: center;
 }
+.customSelect{
+  display: flex;
+  margin: 30px;
+  justify-content: center;
+}
